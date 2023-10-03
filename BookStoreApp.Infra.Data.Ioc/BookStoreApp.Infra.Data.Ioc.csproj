@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BookStoreApp.Application\BookStoreApp.Application.csproj" />
     <ProjectReference Include="..\BookStoreApp.Domain\BookStoreApp.Domain.csproj" />
     <ProjectReference Include="..\BookStoreApp.Infra.Data\BookStoreApp.Infra.Data.csproj" />

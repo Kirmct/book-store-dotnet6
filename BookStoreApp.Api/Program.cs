@@ -1,3 +1,6 @@
+using BookStoreApp.Infra.Data.Ioc;
+using FluentValidation.AspNetCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddServices(builder.Configuration);
 
 
 var app = builder.Build();
