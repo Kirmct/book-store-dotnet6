@@ -17,15 +17,16 @@ namespace BookStoreApp.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] BookRequestDTO request)
+        public async Task<IActionResult> Create([FromBody] BookRequestDTO request)
         {
-            return Ok();
+            var result = await _service.Create(request);
+            return Ok(result);
         }
 
         [HttpGet]
-        public IActionResult FindAll()
+        public async Task<ActionResult> FindAll()
         {
-            return Ok(_service.FindAll());
+            return Ok(await _service.FindAll());
         }
     }
 }

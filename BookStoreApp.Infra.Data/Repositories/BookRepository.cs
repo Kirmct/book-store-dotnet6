@@ -15,12 +15,12 @@ namespace BookStoreApp.Infra.Data.Repositories
             _db = db;
         }
 
-        public Task<Book> CreateAsync(Book book)
+        public async Task<Book> CreateAsync(Book book)
         {
             _db.Add(book);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
-            return Task.FromResult(book);
+            return book;
         }
 
         public Task DeleteAsync(int id)

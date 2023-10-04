@@ -25,11 +25,11 @@ namespace BookStoreApp.Application.Services
             return bookResponse;
         }
 
-        public Task<ICollection<BookResponseDTO>> FindAll()
+        public async Task<ICollection<BookResponseDTO>> FindAll()
         {
-            var result = _bookRepository.FindAllAsync();
+            var result = await _bookRepository.FindAllAsync();
             var bookResponse = _mapper.Map<ICollection<BookResponseDTO>>(result);
-            return Task.FromResult(bookResponse);
+            return bookResponse;
         }
     }
 }
