@@ -18,8 +18,6 @@ namespace BookStoreApp.Infra.Data.Repositories
         public async Task<Book> CreateAsync(Book book)
         {
             _db.Add(book);
-            await _db.SaveChangesAsync();
-
             return book;
         }
 
@@ -30,17 +28,27 @@ namespace BookStoreApp.Infra.Data.Repositories
 
         public async Task<ICollection<Book>> FindAllAsync()
         {
-            return await _db.Books.ToListAsync();
+            return await _db.Books.Include(x => x.BookAuthors).Include(x => x.PublishingCompany).ToListAsync();
         }
 
-        public Task<Book> FindByIdAsync(int id)
+        public async Task<Book> FindByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var response = await _db.Books.Where(b => b.Id == id)
+                .Include(x => x.BookAuthors)
+                .Include(x => x.PublishingCompany).FirstOrDefaultAsync();
+            return response;
         }
 
-        public Task<Book> UpdateAsync(Book book)
+        public async Task SaveAllChanges()
         {
-            throw new NotImplementedException();
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task<Book> UpdateAsync(Book book)
+        {
+            _db.Entry(book).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+            return book;
         }
     }
 }

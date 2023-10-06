@@ -24,6 +24,8 @@ namespace BookStoreApp.Infra.Data.Ioc
             );
 
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IPublishingCompanyRepository, PublishingCompanyRepository>();
 
             return services;
         }
@@ -38,6 +40,8 @@ namespace BookStoreApp.Infra.Data.Ioc
             services.AddScoped<IValidator<BookRequestDTO>, BookRequestValidator>();
 
             services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<IPublishingCompanyService, PublishingCompanyService>();
 
             return services;
         }

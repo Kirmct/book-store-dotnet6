@@ -9,5 +9,7 @@ namespace BookStoreApp.Domain.Repositories
         Task<Book> CreateAsync(Book book);
         Task<Book> UpdateAsync(Book book);
         Task DeleteAsync(int id);
+
+        Task SaveAllChanges();
     }
 }
